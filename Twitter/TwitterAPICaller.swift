@@ -3,7 +3,7 @@
 //  Twitter
 //
 //  Created by Dan on 1/3/19.
-//  Copyright © 2019 Dan. All rights reserved.
+//  Copyright © 2019 Regina Bass. All rights reserved.
 //
 
 import UIKit
@@ -63,5 +63,15 @@ class TwitterAPICaller: BDBOAuth1SessionManager {
             failure(error)
         })
     }
-    
+   
+    func postTweet(tweetString: String,success: @escaping () -> (), failure: @escaping (Error) -> ()){
+        
+        let resourceUrl = "https://api.twitter.com/1.1/statuses/update.json"
+        TwitterAPICaller.client?.post(resourceUrl, parameters: ["status": tweetString], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            success()
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        })
+        
+    }
 }

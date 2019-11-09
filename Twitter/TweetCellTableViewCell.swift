@@ -3,7 +3,7 @@
 //  Twitter
 //
 //  Created by Regina on 11/9/19.
-//  Copyright © 2019 Dan. All rights reserved.
+//  Copyright © 2019 Regina Bass. All rights reserved.
 //
 
 import UIKit
@@ -12,13 +12,8 @@ class TweetCellTableViewCell: UITableViewCell {
 
     
     @IBOutlet weak var profileImageView: UIImageView!
-    
     @IBOutlet weak var userNameLabel: UILabel!
-    
-    
     @IBOutlet weak var tweetContent: UILabel!
-    
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()

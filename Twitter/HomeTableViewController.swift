@@ -3,7 +3,7 @@
 //  Twitter
 //
 //  Created by Regina on 11/9/19.
-//  Copyright © 2019 Dan. All rights reserved.
+//  Copyright © 2019 Regina Bass. All rights reserved.
 //
 
 import UIKit
@@ -18,10 +18,17 @@ class HomeTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadTweets()
+        //loadTweets()
         myRefreshControl.addTarget(self, action: #selector(loadTweets), for: .valueChanged)
         tableView.refreshControl = myRefreshControl
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+            loadTweets()
+        
+    }
+    
        // MARK: - loadTweets func
     
     @objc func loadTweets(){
@@ -30,7 +37,7 @@ class HomeTableViewController: UITableViewController {
         let myParams = ["count": numberOfTweets]
         // you can separate multiple parameters with a comma
         
-        TwitterAPICaller.client?.getDictionariesRequest(url: resourceUrl, parameters: myParams, success: {(tweets: [NSDictionary]) in
+        TwitterAPICaller.client?.getDictionariesRequest(url: resourceUrl, parameters: myParams as [String : Any], success: {(tweets: [NSDictionary]) in
             self.tweetArray.removeAll()
             for tweet in tweets {
                 self.tweetArray.append(tweet)
@@ -48,7 +55,7 @@ class HomeTableViewController: UITableViewController {
         numberOfTweets = numberOfTweets + 20
         
         let myParams = ["count": numberOfTweets]
-        TwitterAPICaller.client?.getDictionariesRequest(url: resourceUrl, parameters: myParams, success: {(tweets: [NSDictionary]) in
+        TwitterAPICaller.client?.getDictionariesRequest(url: resourceUrl, parameters: myParams as [String : Any], success: {(tweets: [NSDictionary]) in
             self.tweetArray.removeAll()
             for tweet in tweets {
                 self.tweetArray.append(tweet)
